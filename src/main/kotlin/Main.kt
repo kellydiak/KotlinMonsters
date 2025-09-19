@@ -46,9 +46,10 @@ var especeGalum = EspeceMonstre(13,"Galum","Minéral",12,15,6,8,12,55,9.0,13.0,4
 
 fun main() {
 
+    /* TEST ESPECE
     println(especeSpringleaf.afficheArt())
     println(especeFlamkip.afficheArt())
-    println(especeAquamy.afficheArt())
+    println(especeAquamy.afficheArt())*/
 
 
     /* TEST COULEURS
@@ -56,8 +57,6 @@ fun main() {
     println(changeCouleur("coucou", "rouge"))
     println(changeCouleur("World", "bleu"))
     println("Hello ${changeCouleur("my", "jaune")} World")*/
-
-
 
 
 }

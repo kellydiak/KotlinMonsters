@@ -28,5 +28,4 @@ class Entraineur(var  id: Int, var nom: String,var argents: Int, ) {
 
 
 
-
 }
