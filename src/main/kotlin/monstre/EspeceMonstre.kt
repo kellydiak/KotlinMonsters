@@ -1,13 +1,15 @@
 package org.example.monstre
 
+import java.io.File
+
 /**
- * Cette classe repésente les différentes espèces de monstres
+ * Représente les caractéristiques de base d'un type de monstre. On possède différentes infos
+ * le concernant comme son nom, id, ..
  *
- * definir blahblah
- * blahblah
+ *
  * TODO finir de ecrire les parametres
- * @property id L'identifiant unique de l'entraîneur.
- * @property nom Le nom de l'entraîneur.
+ * @property id L'identifiant unique du monstre.
+ * @property nom Le nom du monstre.
  * @property type La quantité d'argent en possession de l'entraîneur.
  * @property baseAttaque
  * @property baseDefense
@@ -30,6 +32,7 @@ package org.example.monstre
 class EspeceMonstre(
     var id: Int,
     var nom: String,
+    var type : String,
     val baseAttaque: Int,
     val baseDefense: Int,
     val baseVitesse: Int,
@@ -52,11 +55,19 @@ class EspeceMonstre(
      *
      * @param deFace Détermine si l'art affiché est de face (true) ou de dos (false).
      *               La valeur par défaut est true.
+     *
+     * //TODO finir les paramètres de la méthode
      * @return Une chaîne de caractères contenant l'art ASCII du monstre avec les codes couleur ANSI.
      *         L'art est lu à partir d'un fichier texte dans le dossier resources/art.
      */
 
+    fun afficheArt(deFace: Boolean=true): String {
+        val nomFichier = if(deFace) "front" else "back";
+        val art = File("src/main/resources/art/${this.nom.lowercase()}/$nomFichier.txt").readText()
+        val safeArt = art.replace("/", "/")
+        return safeArt.replace("\\u001B","\u001B")
 
+    }
 
 
 }
