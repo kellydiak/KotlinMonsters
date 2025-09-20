@@ -1,6 +1,7 @@
 package org.example
 
 import org.example.dresseur.Entraineur
+import org.example.monde.Zone
 import org.example.monstre.EspeceMonstre
 
 /**
@@ -43,8 +44,18 @@ var especeLaoumi = EspeceMonstre(8,"Laoumi","Animal",11,10,9,8,11,58,11.0,8.0,7.
 var especeBugsyface = EspeceMonstre(10,"Bugsyface","Insecte",10,13,8,7,13,45,7.0,11.0,6.5,8.0,11.5,45.0,"Insecte à carapace luisante, se déplace par bonds et vibre des antennes.","Sa carapace devient plus dure après chaque mue.","Travailleur, sociable, infatigable")
 var especeGalum = EspeceMonstre(13,"Galum","Minéral",12,15,6,8,12,55,9.0,13.0,4.0,6.5,10.5,55.0,"Golem ancien de pierre, yeux lumineux en garde.","Peut rester immobile des heures comme une statue.","Sérieux, stoïque, fiable")
 
+//Objets Zone
+
+var zone1 = Zone(1,"Nandy",60, mutableListOf(especeSpringleaf, especeFlamkip),null,null)
+var zone2 = Zone(2,"Savigny-le-Temple",77, mutableListOf(especeAquamy, especeLaoumi),null,null)
+
+
 
 fun main() {
+
+    zone1.zoneSuivante = zone2
+    zone2.zonePrecedente = zone1
+
 
     /* TEST ESPECE
     println(especeSpringleaf.afficheArt())

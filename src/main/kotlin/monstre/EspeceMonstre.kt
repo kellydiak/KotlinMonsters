@@ -3,9 +3,8 @@ package org.example.monstre
 import java.io.File
 
 /**
- * Représente les caractéristiques de base d'un type de monstre. On possède différentes infos
+ * Cette classe représente les caractéristiques de base d'un type de monstre. On possède différentes infos
  * le concernant comme son nom, id, ..
- *
  *
  * TODO finir de ecrire les parametres
  * @property id L'identifiant unique du monstre.
