@@ -2,6 +2,7 @@ package org.example.monstre
 
 import org.example.dresseur.Entraineur
 import java.util.concurrent.ThreadLocalRandom
+import kotlin.math.pow
 import kotlin.random.Random
 import kotlin.random.nextInt
 
@@ -14,7 +15,6 @@ import kotlin.random.nextInt
  *
  * @constructor IndividuMonstre :
  * @param expInit
- * @
  * @property id
  * @property nom
  * @property espece
@@ -40,35 +40,46 @@ class IndividuMonstre constructor(
     expInit: Double
 ) {
     var niveau: Int = 1
-    var attaque: Int = listOf<Int>(-2,2).random()
-    //var defense: Int =
-    //var vitesse: Int =
-    //var attaqueSpe: Int =
-    //var defenseSpe: Int =
-    //var pvMax: Int =
-    //var potentiel =
+    var attaque: Int = espece.baseAttaque + listOf<Int>(-2,2).random()
+    var defense: Int = espece.baseDefense + listOf<Int>(-2,2).random()
+    var vitesse: Int = espece.baseVitesse + listOf<Int>(-2,2).random()
+    var attaqueSpe: Int = espece.baseAttaqueSpe + listOf<Int>(-2,2).random()
+    var defenseSpe: Int = espece.baseDefenseSpe + listOf<Int>(-2,2).random()
+    var pvMax: Int = espece.basePv + listOf<Int>(-5,5).random()
+    var potentiel: Double = Random.nextDouble(0.5,2.0)
     var exp: Double = 0.0
 
     var pv: Int = pvMax
         get() = field
         set(nouveauPv) {
-            field= if (nouveauPv < 0 || nouveauPv > pvMax) {
-                    println("error")
-                } else {
-                    return nouveauPv
-            }
-
+            field = if ((nouveauPv < 0) || (nouveauPv > pvMax)) 0 else nouveauPv
         }
 
-    
-    fun palierExp() {
+    /**
+     * Cette classe calcule l'expérience totale nécessaire pour atteindre un niveau donné.
+     *
+     * @param niveau Niveau cible.
+     * @return Expérience cumulée nécessaire pour atteindre ce niveau.
+     */
+
+    fun palierExp(niveau: Int) : Int {
+        var expCumulee = 100*(niveau-1).toDouble().pow(2.0).toInt()
+        return expCumulee
+    }
+
+    /**
+     * Cette classe augmente le niveau d'un monstre.
+     * De plus elle recalcule les nouvelles valeurs des caractéristiques.
+     *
+     *
+     */
+
+    fun levelUp() {
 
     }
 
 
-
-
-    }
+}
 
 
 
