@@ -56,7 +56,6 @@ fun main() {
     zone1.zoneSuivante = zone2
     zone2.zonePrecedente = zone1
 
-
     /* TEST ESPECE
     println(especeSpringleaf.afficheArt())
     println(especeFlamkip.afficheArt())
