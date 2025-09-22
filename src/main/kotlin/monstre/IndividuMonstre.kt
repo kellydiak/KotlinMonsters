@@ -5,6 +5,7 @@ import java.util.concurrent.ThreadLocalRandom
 import kotlin.math.pow
 import kotlin.random.Random
 import kotlin.random.nextInt
+import kotlin.math.round
 
 /**
  * Cette classe représente chaque individu, c'est-à-dire les monstres avec le joueur va interagir
@@ -47,7 +48,24 @@ class IndividuMonstre constructor(
     var defenseSpe: Int = espece.baseDefenseSpe + listOf<Int>(-2,2).random()
     var pvMax: Int = espece.basePv + listOf<Int>(-5,5).random()
     var potentiel: Double = Random.nextDouble(0.5,2.0)
+
+
     var exp: Double = 0.0
+        get() = field
+        set(value) {
+            if (niveau == 1) {
+                print(true)
+            } else {
+                print(false)
+            }
+            while (field >= palierExp(niveau)) {
+                levelUp()
+
+            }
+
+        }
+
+
 
     var pv: Int = pvMax
         get() = field
@@ -75,7 +93,16 @@ class IndividuMonstre constructor(
      */
 
     fun levelUp() {
+        niveau += 1
 
+        attaque = round((espece.modAttaque * potentiel)).toInt() + listOf<Int>(-2,2).random()
+        defense = round((espece.modDefense * potentiel)).toInt() + listOf<Int>(-2,2).random()
+        vitesse = round((espece.modVitesse * potentiel)).toInt() + listOf<Int>(-2,2).random()
+        attaqueSpe = round((espece.modAttaqueSpe * potentiel)).toInt() + listOf<Int>(-2,2).random()
+        defenseSpe = round((espece.modDefense * potentiel)).toInt() + listOf<Int>(-2,2).random()
+        pvMax = round((espece.modPv * potentiel)).toInt() + Random.nextInt(-5,5)
+
+        pv += pvMax
     }
 
 
