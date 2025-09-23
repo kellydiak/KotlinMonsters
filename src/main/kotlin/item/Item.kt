@@ -1,6 +1,11 @@
 package org.example.item
 
-// faire la doc de la classe
+// TODO finir la doc
+/**
+ * Classe principale dont les autres classes vont hériter les propriétés.
+ * Elle permet de
+ *
+ */
 
 open class Item (
     var id: Int,

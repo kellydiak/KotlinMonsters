@@ -1,8 +1,16 @@
 package org.example.item
-
 import org.example.dresseur.Entraineur
 
-// faire la doc de badge
+
+/**
+ * Cette classe permet de
+ *
+ * @param id
+ * @param nom
+ * @param description
+ * @property champion
+ * TODO finir la des
+ */
 
 class Badge (id: Int,
             nom: String,
