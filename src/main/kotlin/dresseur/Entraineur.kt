@@ -1,5 +1,7 @@
 package org.example.dresseur
 
+import org.example.monstre.IndividuMonstre
+
 /**
  * Représente un entraîneur dans le contexte du jeu.
  *
@@ -12,20 +14,19 @@ package org.example.dresseur
 
  */
 
-class Entraineur(var  id: Int, var nom: String,var argents: Int, ) {
-    /*
-    TODO equipeMonstre
-    TODO boiteMonstre
-    TODO sacAKube
-    mettre les towdo dans les parenthèses
-    */
+class Entraineur(var id: Int,
+                 var nom: String,
+                 var argents: Int,
+    var equipeMonstre: MutableList<IndividuMonstre> = mutableListOf(),
+    var boiteMonstre: MutableList<IndividuMonstre> = mutableListOf())
+{
+
+    /* TODO sacAKube*/
 
     fun afficheDetail() {
         println("Dresseur : ${this.nom}")
         println("Argents : ${this.argents}")
 
     }
-
-
 
 }

@@ -53,12 +53,15 @@ var zone2 = Zone(2,"Savigny-le-Temple",77, mutableListOf(especeAquamy, especeLao
 
 
 fun main() {
+
+
+    /* TEST INDIVIDUS MONSTRE 1*/
     val monstre1 = IndividuMonstre(1,"Springleaf", especeSpringleaf,null,1500.0)
     val monstre2 = IndividuMonstre(2,"Flampkip", especeFlamkip,null,1500.0)
     val monstre3 = IndividuMonstre(3,"Aquamy", especeAquamy,null,1500.0)
-
-
-
+    //monstre1.attaquer(IndividuMonstre(2,"Flampkip", especeFlamkip,null,1500.0))
+    //monstre1.renommer()
+    monstre1.afficheDetail()
 
     /* TEST ZONE
     zone1.zoneSuivante = zone2

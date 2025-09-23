@@ -53,6 +53,7 @@ class IndividuMonstre constructor(
     var exp: Double = 0.0
         get() = field
         set (value) {
+            field = value
             if (niveau == 1) {
                 true
             } else {
@@ -80,10 +81,8 @@ class IndividuMonstre constructor(
     }
 
 
-
-
     /**
-     * Cette classe calcule l'expérience totale nécessaire pour atteindre un niveau donné.
+     * Cette méthode calcule l'expérience totale nécessaire pour atteindre un niveau donné.
      *
      * @param niveau Niveau cible.
      * @return Expérience cumulée nécessaire pour atteindre ce niveau.
@@ -95,7 +94,7 @@ class IndividuMonstre constructor(
     }
 
     /**
-     * Cette classe augmente le niveau d'un monstre.
+     * Cette méthode augmente le niveau d'un monstre.
      * De plus elle recalcule les nouvelles valeurs des caractéristiques.
      *
      *
@@ -114,7 +113,54 @@ class IndividuMonstre constructor(
         pv += pvMax
     }
 
-    /* méthode attaquer, méthode renommer, méthode affiche détail */
+    /**
+     * Cette méthode permet à un monstre d'attaquer une cible (un autre monstre).
+     * Cela lui inflige des dégâts.
+     *
+     * Les dégâts sont calculés de manière très simple pour le moment :
+     * dégâts = attaque - (défense/2). Avec pour minimum 1 dégât.
+     *
+     * @param cible Monstre cible de l'attaque.
+     */
+
+    fun attaquer(cible: IndividuMonstre) {
+        var degatBrut = this.attaque
+        var degatTotal = degatBrut - (this.defense / 2)
+
+        if( degatTotal < 1) {
+            degatTotal = 1
+        }
+        var pvAvant = cible.pv
+        cible.pv -= degatTotal
+        var pvApres = cible.pv
+        println("$nom inflige ${pvAvant-pvApres} dégâts à ${cible.nom}")
+    }
+
+    //faire la doc de la methode
+    fun renommer() {
+        println("Voulez-vous renommer $nom ?")
+        var nouveauNom: String = readLine().toString()
+        if (nouveauNom != null) {
+            this.nom = nouveauNom
+            println("Voici son nouveau nom ${this.nom}")
+        }
+    }
+
+    // faire la doc d'affiche detail
+    fun afficheDetail() {
+        println("================")
+        println("niveau : $niveau")
+        println("nom : $nom")
+        println("PV : $pv / $pvMax")
+        println("================")
+        println("atq : $attaque")
+        println("def : $defense")
+        println("vitesse : $vitesse")
+        println("attaqueSpe : $attaqueSpe")
+        println("DefSpe : $defenseSpe")
+        println(this.espece.afficheArt(true)) //donné par Issa
+
+    }
 
 
 }
