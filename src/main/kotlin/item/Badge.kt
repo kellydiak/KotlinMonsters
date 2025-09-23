@@ -2,6 +2,8 @@ package org.example.item
 
 import org.example.dresseur.Entraineur
 
+// faire la doc de badge
+
 class Badge (id: Int,
             nom: String,
             description: String,
