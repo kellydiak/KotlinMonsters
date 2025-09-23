@@ -1,6 +1,7 @@
 package org.example
 
 import org.example.dresseur.Entraineur
+import org.example.item.Badge
 import org.example.monde.Zone
 import org.example.monstre.EspeceMonstre
 import org.example.monstre.IndividuMonstre
@@ -61,7 +62,9 @@ fun main() {
     val monstre3 = IndividuMonstre(3,"Aquamy", especeAquamy,null,1500.0)
     //monstre1.attaquer(IndividuMonstre(2,"Flampkip", especeFlamkip,null,1500.0))
     //monstre1.renommer()
-    monstre1.afficheDetail()
+    //monstre1.afficheDetail()
+
+    var bagde1 = Badge(1,"Badge Roche","Badge gagné lorsque le joueur attaeint l'arène de pierre")
 
     /* TEST ZONE
     zone1.zoneSuivante = zone2

@@ -1,8 +1,8 @@
 package org.example.item
 
-class Item (
+open class Item (
     var id: Int,
     var nom: String,
-    var desription: String) {
+    var description: String) {
 
 }
