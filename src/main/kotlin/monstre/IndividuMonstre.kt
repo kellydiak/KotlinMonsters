@@ -52,19 +52,20 @@ class IndividuMonstre constructor(
 
     var exp: Double = 0.0
         get() = field
-        set(value) {
+        set (value) {
             if (niveau == 1) {
-                print(true)
+                true
             } else {
-                print(false)
+                false
             }
             while (field >= palierExp(niveau)) {
                 levelUp()
-
+                if (niveau != 1){
+                    println("le monstre $nom est maintenant niveau $niveau !")
+                }
             }
 
         }
-
 
 
     var pv: Int = pvMax
@@ -72,6 +73,14 @@ class IndividuMonstre constructor(
         set(nouveauPv) {
             field = if ((nouveauPv < 0) || (nouveauPv > pvMax)) 0 else nouveauPv
         }
+
+    init {
+        this.exp = expInit
+        // Applique le setter et déclenche un éventuel level-up
+    }
+
+
+
 
     /**
      * Cette classe calcule l'expérience totale nécessaire pour atteindre un niveau donné.
@@ -104,6 +113,8 @@ class IndividuMonstre constructor(
 
         pv += pvMax
     }
+
+    /* méthode attaquer, méthode renommer, méthode affiche détail */
 
 
 }

@@ -3,6 +3,7 @@ package org.example
 import org.example.dresseur.Entraineur
 import org.example.monde.Zone
 import org.example.monstre.EspeceMonstre
+import org.example.monstre.IndividuMonstre
 
 /**
  * Change la couleur du message donné selon le nom de la couleur spécifié.
@@ -52,9 +53,16 @@ var zone2 = Zone(2,"Savigny-le-Temple",77, mutableListOf(especeAquamy, especeLao
 
 
 fun main() {
+    val monstre1 = IndividuMonstre(1,"Springleaf", especeSpringleaf,null,1500.0)
+    val monstre2 = IndividuMonstre(2,"Flampkip", especeFlamkip,null,1500.0)
+    val monstre3 = IndividuMonstre(3,"Aquamy", especeAquamy,null,1500.0)
 
+
+
+
+    /* TEST ZONE
     zone1.zoneSuivante = zone2
-    zone2.zonePrecedente = zone1
+    zone2.zonePrecedente = zone1*/
 
     /* TEST ESPECE
     println(especeSpringleaf.afficheArt())
@@ -67,6 +75,5 @@ fun main() {
     println(changeCouleur("coucou", "rouge"))
     println(changeCouleur("World", "bleu"))
     println("Hello ${changeCouleur("my", "jaune")} World")*/
-
 
 }
