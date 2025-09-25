@@ -149,9 +149,9 @@ class IndividuMonstre constructor(
     // faire la doc d'affiche detail
     fun afficheDetail() {
         println("================")
-        println("niveau : $niveau")
         println("nom : $nom")
         println("PV : $pv / $pvMax")
+        println("niveau : $niveau")
         println("================")
         println("atq : $attaque")
         println("def : $defense")
