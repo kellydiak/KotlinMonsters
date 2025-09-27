@@ -12,6 +12,7 @@ import org.example.monstre.IndividuMonstre
  * @property id L'identifiant unique de l'entraîneur.
  * @property nom Le nom de l'entraîneur.
  * @property argents La quantité d'argent en possession de l'entraîneur.
+ *
 
  */
 

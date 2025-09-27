@@ -1,7 +1,10 @@
 package org.example.jeu
 
-import org.example.joueur
+import org.example.dresseur.Entraineur
+import org.example.item.Item
+import org.example.joueur // faire appel à l'objet crée "joueur" permet l'accès aux propriétés de la classe Entraineur
 import org.example.monstre.IndividuMonstre
+
 
 /**
  * Cette classe permet de
@@ -27,11 +30,9 @@ class CombatMonstre(var monstreJoueur: IndividuMonstre,
      * @return `true` si le joueur a perdu, sinon `false`.
      */
 
-    fun gameOver () : Boolean {
-        if() {
+    fun gameOver () : Boolean =
+        joueur.equipeMonstre.none() {it.pv > 10}
 
-        }
-    }
 
     /**
      * Méthode qui indique si le joueur a gagné le combat.
@@ -70,7 +71,36 @@ class CombatMonstre(var monstreJoueur: IndividuMonstre,
         }
     }
 
-// methode ,actionJoueur, afficheCOmbat, jouer
+    /**
+     * faire la doc dessus
+     */
+
+    fun actionJoueur() : Boolean {
+        if (gameOver()) {
+            return false
+        }
+        println("Voici ce que vous pouvez faire : \n" +
+                "Tapez 1 : Votre monstre attaque le monstre sauvage. \n" +
+                "Tapez 2 : Utilisation d'un item. \n" +
+                "Tapez 3 : Switcher de monstre.")
+        var choixAction: Int = readln().toInt()
+
+        if (choixAction == 1) {
+            monstreJoueur.attaquer(monstreSauvage)
+
+        } else if (choixAction == 2 ) {
+
+            println(joueur.sacAItems)
+        }
+
+
+
+
+
+        return true
+    }
+
+// methode  afficheCOmbat, jouer
 
 
 
