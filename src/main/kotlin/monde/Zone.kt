@@ -24,5 +24,8 @@ class Zone (
     var zoneSuivante: Zone? = null,
     var zonePrecedente: Zone? = null
 ) {
+    fun genereMonstre() {
+
+    }
 
 }

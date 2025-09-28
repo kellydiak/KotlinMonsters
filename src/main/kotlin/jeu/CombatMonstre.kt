@@ -3,6 +3,7 @@ package org.example.jeu
 import org.example.dresseur.Entraineur
 import org.example.item.Item
 import org.example.joueur // faire appel à l'objet crée "joueur" permet l'accès aux propriétés de la classe Entraineur
+import org.example.monstre.EspeceMonstre
 import org.example.monstre.IndividuMonstre
 
 
@@ -72,7 +73,10 @@ class CombatMonstre(var monstreJoueur: IndividuMonstre,
     }
 
     /**
-     * faire la doc dessus
+     * Cette méthode permet au joueur d’effectuer plusieurs actions. Retourne true si le combat doit continuer sinon false.
+     * - Si le joueur tape 1 : le monstre du joueur attaque le monstre sauvage.
+     * - Si le joueur tape 2 : on donne la possibilité au joueur d'utiliser un item
+     * - Si le joueur tape 3 : le joueur peut changer son monstre actuel contre un autre monstre de son équipe
      */
 
     fun actionJoueur() : Boolean {
@@ -89,18 +93,85 @@ class CombatMonstre(var monstreJoueur: IndividuMonstre,
             monstreJoueur.attaquer(monstreSauvage)
 
         } else if (choixAction == 2 ) {
-
             println(joueur.sacAItems)
+            var indexChoix: Int = readln().toInt()
+            var objetChoisi = joueur.sacAItems[indexChoix]
+            //TODO finir tout ca puree
+
+        } else if (choixAction == 3) {
+            print(joueur.equipeMonstre )
+            var indexChoix: Int = readln().toInt()
+            var choixMonstre = joueur.equipeMonstre[indexChoix]
+
+        } else {
+            print("chiffre invalide !")
         }
-
-
 
 
 
         return true
     }
 
-// methode  afficheCOmbat, jouer
+    /**
+     * Cette méthode affiche les données du monstre du joueur et du monstre sauvage ainsi que leur ascii art.
+     */
+
+    fun afficheCombat() {
+        println("======== Début Round : $round ========")
+        println("Niveau : ${monstreSauvage.niveau}")
+        println("PV : ${monstreSauvage.pv / monstreSauvage.pvMax}")
+        println(monstreSauvage.espece.afficheArt())
+        println(monstreJoueur.espece.afficheArt(false))
+        println("Niveau : ${monstreJoueur.niveau}")
+        println("PV : ${monstreJoueur.pv / monstreJoueur.pvMax}")
+    }
+
+    /**
+     * Cette méthode fait jouer les deux monstres (honneur à celui dont la vitesse est élevée).
+     * Si l'appel de this.actionJoueur() retourne false, on arrête l'exécution de la méthode jouer() avec un return vide.
+     */
+
+    fun jouer() {
+        var joueurPlusRapide = monstreJoueur.vitesse >= monstreSauvage.vitesse
+        afficheCombat()
+        if (joueurPlusRapide ) {
+            var continuer = this.actionJoueur()
+            if (continuer == false) {
+                return
+            } else {
+                actionAdversaire()
+            }
+        } else {
+            actionAdversaire()
+            if (gameOver() == false) {
+                var continuer = this.actionJoueur()
+
+                if (continuer == false ){
+                    return
+                }
+            return
+            }
+        }
+    }
+
+    /**
+     * Cette méthode lance le combat et gère les rounds jusqu'à la victoire ou la défaite.
+     *
+     * Affiche un message de fin si le joueur perd et restaure les PV de tous ses monstres.
+     *
+     */
+
+    fun lancerCombat() {
+        while (!gameOver() && !joueurGagne()) {
+            this.jouer()
+            println("======== Fin du Round : $round ========")
+            round++
+        }
+        if (gameOver()) {
+            joueur.equipeMonstre.forEach { it.pv = it.pvMax }
+            println("Game Over !")
+        }
+    }
 
 
 
