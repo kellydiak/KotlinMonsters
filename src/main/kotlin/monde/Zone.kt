@@ -1,6 +1,8 @@
 package org.example.monde
 
+import org.example.joueur
 import org.example.monstre.EspeceMonstre
+import org.example.monstre.IndividuMonstre
 
 /**
  * Cette classe représente un lieu où le joueur peut se déplacer et rencontrer des monstres.
@@ -9,11 +11,11 @@ import org.example.monstre.EspeceMonstre
  * @property id représente l'identification de la zone.
  * @property nom représente le nom de la zone.
  * @property expZone représente la quantité.
- * @property especesMonstres blahblah
+ * @property especesMonstres propriété qui est une liste ...
  * @property zoneSuivante si on se trouve sur une zone x, c'est la zone x+1
  * @property zonePrecedente si on se trouve sur une zone x, c'est la zone x-1
  * //TODO finir la doc pour les proprietes expzone et especesmonstres
- * //TODO faire methodes : genereMonstre() & rencontreMontre()
+ * / & rencontreMontre()
  */
 
 class Zone (
@@ -24,7 +26,34 @@ class Zone (
     var zoneSuivante: Zone? = null,
     var zonePrecedente: Zone? = null
 ) {
-    fun genereMonstre() {
+    /**
+     * Cette méthode permet de génerer
+     *
+     * @property especesRandom Création aléatoire de l'espèce
+     * @property expZoneRandom Permet de générer aléatoirement l'xp de la zone
+     * @property monstreFinal
+     * @return monstreFinal
+     */
+
+    fun genereMonstre() : IndividuMonstre {
+        var especesRandom = especesMonstres.random()
+        var expZoneRandom : Double = expZone + listOf<Double>(-0.20,0.20).random() // obligée de passer en double pour utiliser le pourcentage
+        var monstreFinal = IndividuMonstre(especesRandom.id,especesRandom.nom,especesRandom,null,expZoneRandom)
+        return monstreFinal
+    }
+
+    /**
+     * Cette méthode démarre un combat entre un monstre sauvage généré (grâce à la méthode précédente)
+     * et le premier monstre de l’équipe du joueur qui a des pv >0.
+     *
+     * @property monstreSauvage
+     * @property premierMonstre
+     */
+
+    fun rencontreMonstre () {
+        var monstreSauvage = genereMonstre()
+        var premierMonstre : Int
+        for (monstre in joueur.equipeMonstre)
 
     }
 
