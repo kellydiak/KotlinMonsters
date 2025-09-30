@@ -2,6 +2,7 @@ package org.example.jeu
 
 import org.example.dresseur.Entraineur
 import org.example.item.Item
+import org.example.item.Utilisable
 import org.example.joueur // faire appel à l'objet crée "joueur" permet l'accès aux propriétés de la classe Entraineur
 import org.example.monstre.EspeceMonstre
 import org.example.monstre.IndividuMonstre
@@ -63,7 +64,9 @@ class CombatMonstre(var monstreJoueur: IndividuMonstre,
     }
 
     /**
-     * faire la doc dessus
+     * Cette méthode montre que si le pv du monstreSauvage est > 0 alors ce
+     * dernier peut attaquer le monstreJoueur.
+     *
      */
 
     fun actionAdversaire() {
@@ -94,20 +97,30 @@ class CombatMonstre(var monstreJoueur: IndividuMonstre,
 
         } else if (choixAction == 2 ) {
             println(joueur.sacAItems)
+            println("Choisissez votre index : ")
             var indexChoix: Int = readln().toInt()
             var objetChoisi = joueur.sacAItems[indexChoix]
-            //TODO finir tout ca puree
+            if (objetChoisi is Utilisable) {
+                var captureReussie = objetChoisi.utiliser(monstreSauvage)
+                if (captureReussie) return false
+            } else {
+                println("Objet non utilisable !")
+            }
 
         } else if (choixAction == 3) {
-            print(joueur.equipeMonstre )
+            print(joueur.equipeMonstre)
             var indexChoix: Int = readln().toInt()
             var choixMonstre = joueur.equipeMonstre[indexChoix]
+            if (choixMonstre.pv <= 0) {
+                println("Impossible ! Ce monstre est KO :( ")
+            } else {
+                println("${choixMonstre} remplace ${monstreJoueur}")
+                monstreJoueur = choixMonstre
+            }
 
         } else {
             print("chiffre invalide !")
         }
-
-
 
         return true
     }
