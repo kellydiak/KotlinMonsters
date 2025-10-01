@@ -1,5 +1,6 @@
 package org.example.monde
 
+import org.example.jeu.CombatMonstre
 import org.example.joueur
 import org.example.monstre.EspeceMonstre
 import org.example.monstre.IndividuMonstre
@@ -14,7 +15,7 @@ import org.example.monstre.IndividuMonstre
  * @property especesMonstres propriété qui est une liste ...
  * @property zoneSuivante si on se trouve sur une zone x, c'est la zone x+1
  * @property zonePrecedente si on se trouve sur une zone x, c'est la zone x-1
- * //TODO finir la doc pour les proprietes expzone et especesmonstres
+ * //TODO finir la doc pour les proprietes expzone et especesmonstres et méthodes
  * / & rencontreMontre()
  */
 
@@ -32,7 +33,7 @@ class Zone (
      * @property especesRandom Création aléatoire de l'espèce
      * @property expZoneRandom Permet de générer aléatoirement l'xp de la zone
      * @property monstreFinal
-     * @return monstreFinal
+     *
      */
 
     fun genereMonstre() : IndividuMonstre {
@@ -46,15 +47,19 @@ class Zone (
      * Cette méthode démarre un combat entre un monstre sauvage généré (grâce à la méthode précédente)
      * et le premier monstre de l’équipe du joueur qui a des pv >0.
      *
-     * @property monstreSauvage
+     * @property monstreSauvage Représente un monstre non capturé
      * @property premierMonstre
+     * @property fight
      */
 
     fun rencontreMonstre () {
         var monstreSauvage = genereMonstre()
-        var premierMonstre : Int
-        for (monstre in joueur.equipeMonstre)
-
+        var premierMonstre : IndividuMonstre? = null
+        for (monstre in joueur.equipeMonstre) {
+            if (monstre.pv > 0) premierMonstre = monstre
+        }
+        var fight = CombatMonstre(premierMonstre!!,monstreSauvage)
+        fight.lancerCombat()
     }
 
 }
