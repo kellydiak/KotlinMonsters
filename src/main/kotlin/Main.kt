@@ -71,4 +71,7 @@ fun main() {
 
     //var bagde1 = Badge(1,"Badge Roche","Badge gagné lorsque le joueur attaeint l'arène de pierre")
 
+
+
+
 }
